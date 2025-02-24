@@ -8,6 +8,10 @@ app.use(express.json()); // Middleware to parse JSON body
 
 // app.use(express.static('dist'))
 
+app.get("/", (req, res) => {
+   res.send("server is running...")
+})
+
 app.post("/download", async (req, res) => {
     console.log("req.check: ", req.body)
     const { url } = req.body; // Get URL from request body
