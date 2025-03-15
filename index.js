@@ -8,18 +8,23 @@ app.use(express.json()); // Middleware to parse JSON body
 
 // app.use(express.static('dist'))
 
+
+
 app.get("/", (req, res) => {
    res.send("server is running...")
 })
 
 app.post("/download", async (req, res) => {
-    console.log("req.check: ", req.body)
+  //  console.log("req.check: ", req.body)
     const { url } = req.body; // Get URL from request body
+    console.log("user: ", url)
     if (!url) return res.status(400).json({ error: "URL is required" });
 
     try {
         const data = await alldl(url); // Use alldl function
-        res.json(data);
+        
+        res.json(data.data);
+        console.log("data: ", data.data)
     } catch (err) {
         console.error("Error:", err);
         res.status(500).json({ error: "Failed to fetch video", details: err.message });
