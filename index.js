@@ -28,8 +28,4 @@ app.post("/download", async (req, res) => {
 
 const port = process.env.PORT || 3000;
 
-if (process.env.VERCEL !== "1") {
-    app.listen(port, () => console.log(`Server running on port ${port}`));
-}
-
-module.exports = app;
+app.listen(port, () => console.log(`Server running on port ${port}`));
